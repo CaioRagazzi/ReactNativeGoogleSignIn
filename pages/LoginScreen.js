@@ -10,7 +10,7 @@ GoogleSignin.configure();
 
 const LoginScreen = () => {
   const [show, setShow] = useState(false);
-  const { signIn } = useContext(AuthContext)
+  const { signIn, authGoogle } = useContext(AuthContext)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -21,7 +21,7 @@ const LoginScreen = () => {
   function googleLogIn() {
     GoogleSignin.signIn()
       .then(user => {
-        console.log(user);
+        authGoogle(user.user.email)
       })
       .catch(err => {
         console.log(err);
